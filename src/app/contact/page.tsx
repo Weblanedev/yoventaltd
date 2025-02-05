@@ -8,9 +8,10 @@ import FooterThree from '@/layout/footer/footer-three';
 import shape from '@/assets/images/shape/shape_33.svg';
 // import NewsletterBanner from '@/components/newsletter/newsletter-banner';
 import HeaderThree from '@/layout/header/header-three';
+import { brand_data } from '@/data/brand-data';
 
 export const metadata: Metadata = {
-  title: 'Contact Page - Vymera Limited',
+  title: `Contact - ${brand_data.name}`,
 };
 
 const ContactPage = () => {
