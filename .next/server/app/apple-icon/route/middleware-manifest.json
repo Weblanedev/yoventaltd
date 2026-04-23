@@ -1,0 +1,54 @@
+{
+  "sorted_middleware": [
+    "/apple-icon/route"
+  ],
+  "middleware": {},
+  "instrumentation": null,
+  "functions": {
+    "/apple-icon/route": {
+      "files": [
+        "server/middleware-build-manifest.js",
+        "server/interception-route-rewrite-manifest.js",
+        "server/server-reference-manifest.js",
+        "server/app/apple-icon/route_client-reference-manifest.js",
+        "server/edge/chunks/_next-internal_server_app_apple-icon_route_actions_24ecdbff.js",
+        "server/edge/chunks/turbopack-_next-internal_server_app_apple-icon_route_actions_ffbf34ad.js",
+        "server/edge/chunks/[root-of-the-server]__796e82cf._.js",
+        "server/edge/chunks/[root-of-the-server]__6933151e._.js",
+        "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_16be1ace._.js",
+        "server/edge/chunks/turbopack-edge-wrapper_bac3c80f.js"
+      ],
+      "name": "app/apple-icon/route",
+      "page": "/apple-icon/route",
+      "matchers": [
+        {
+          "regexp": "^/apple\\-icon(?:/)?$",
+          "originalSource": "/apple-icon"
+        }
+      ],
+      "wasm": [
+        {
+          "name": "wasm_fdb56e4cc5936d29",
+          "filePath": "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_resvg_23ace1ce.wasm"
+        },
+        {
+          "name": "wasm_1ccdc983b1fd9f87",
+          "filePath": "server/edge/chunks/node_modules_next_dist_compiled_@vercel_og_yoga_23ace1ce.wasm"
+        }
+      ],
+      "assets": [
+        {
+          "name": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf",
+          "filePath": "server/edge/assets/noto-sans-v27-latin-regular.bdfa676c.ttf"
+        }
+      ],
+      "env": {
+        "__NEXT_BUILD_ID": "APS_2XGw6tRbxpIodV4Zq",
+        "NEXT_SERVER_ACTIONS_ENCRYPTION_KEY": "BuXi4f+66Lfc289cTgb5So02CahDbYmIJv6xGrnvfOM=",
+        "__NEXT_PREVIEW_MODE_ID": "aeae4d0f60019c91f46e4b36c705db3c",
+        "__NEXT_PREVIEW_MODE_ENCRYPTION_KEY": "5d6e5e397f98c9d2dfc24ae57f492d680caeef0a8a6c694cbc61774f76b72a5b",
+        "__NEXT_PREVIEW_MODE_SIGNING_KEY": "8e64d3a6d98a8dcdba631efc45287ffac25bdfb61799640eb5f30fc4c59f1b1c"
+      }
+    }
+  }
+}

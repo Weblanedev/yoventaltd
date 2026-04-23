@@ -1,0 +1,11 @@
+{
+  "pages": {
+    "/twitter-image/route": [
+      "static/chunks/8d23f9169911f890.js",
+      "static/chunks/372dc585475cbbda.js",
+      "static/chunks/722f540e94824f54.js",
+      "static/chunks/8082ab48faca5ea1.js",
+      "static/chunks/turbopack-88f10e65dd50e534.js"
+    ]
+  }
+}

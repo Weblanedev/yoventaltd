@@ -20,6 +20,7 @@ const jet = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(company.website),
   title: { default: `${siteName} · ${siteTagline}`, template: `%s | ${siteName}` },
   description: `${siteName} · ${company.businessLine}.`,
 };

@@ -11,16 +11,19 @@
   "/api/health/route": "app/api/health/route.js",
   "/api/user/me/route": "app/api/user/me/route.js",
   "/api/user/profile/route": "app/api/user/profile/route.js",
+  "/apple-icon/route": "app-edge-has-no-entrypoint",
   "/cart/page": "app/cart/page.js",
   "/checkout/page": "app/checkout/page.js",
   "/contact/page": "app/contact/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/icon.svg/route": "app/icon.svg/route.js",
   "/login/page": "app/login/page.js",
+  "/opengraph-image/route": "app-edge-has-no-entrypoint",
   "/page": "app/page.js",
   "/privacy/page": "app/privacy/page.js",
   "/products/[sku]/page": "app/products/[sku]/page.js",
   "/products/page": "app/products/page.js",
   "/register/page": "app/register/page.js",
-  "/returns/page": "app/returns/page.js"
+  "/returns/page": "app/returns/page.js",
+  "/twitter-image/route": "app-edge-has-no-entrypoint"
 }

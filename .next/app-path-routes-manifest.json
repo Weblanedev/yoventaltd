@@ -11,16 +11,19 @@
   "/api/health/route": "/api/health",
   "/api/user/me/route": "/api/user/me",
   "/api/user/profile/route": "/api/user/profile",
+  "/apple-icon/route": "/apple-icon",
   "/cart/page": "/cart",
   "/checkout/page": "/checkout",
   "/contact/page": "/contact",
   "/dashboard/page": "/dashboard",
-  "/favicon.ico/route": "/favicon.ico",
+  "/icon.svg/route": "/icon.svg",
   "/login/page": "/login",
+  "/opengraph-image/route": "/opengraph-image",
   "/page": "/",
   "/privacy/page": "/privacy",
   "/products/[sku]/page": "/products/[sku]",
   "/products/page": "/products",
   "/register/page": "/register",
-  "/returns/page": "/returns"
+  "/returns/page": "/returns",
+  "/twitter-image/route": "/twitter-image"
 }
