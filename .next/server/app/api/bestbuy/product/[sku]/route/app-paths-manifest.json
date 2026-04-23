@@ -1,0 +1,3 @@
+{
+  "/api/bestbuy/product/[sku]/route": "app/api/bestbuy/product/[sku]/route.js"
+}
