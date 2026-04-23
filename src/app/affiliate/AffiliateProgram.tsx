@@ -11,7 +11,7 @@ import { company } from '@/lib/contact';
 const steps = [
   {
     title: 'Apply',
-    body: 'Tell us about your audience and how you will share Yoventa—social, blog, email, or community.',
+    body: 'Tell us about your audience and how you will share Yoventa: social, blog, email, or community.',
   },
   {
     title: 'Get your link',

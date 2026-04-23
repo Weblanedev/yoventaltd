@@ -1,9 +1,26 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
   "/about/page": "app/about/page.js",
+  "/affiliate/page": "app/affiliate/page.js",
+  "/api/ai/chat/route": "app/api/ai/chat/route.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/api/auth/register/route": "app/api/auth/register/route.js",
+  "/api/bestbuy/product/[sku]/route": "app/api/bestbuy/product/[sku]/route.js",
   "/api/bestbuy/products/route": "app/api/bestbuy/products/route.js",
+  "/api/health/route": "app/api/health/route.js",
   "/api/user/me/route": "app/api/user/me/route.js",
+  "/api/user/profile/route": "app/api/user/profile/route.js",
+  "/cart/page": "app/cart/page.js",
+  "/checkout/page": "app/checkout/page.js",
   "/contact/page": "app/contact/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
   "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
-  "/products/page": "app/products/page.js"
+  "/privacy/page": "app/privacy/page.js",
+  "/products/[sku]/page": "app/products/[sku]/page.js",
+  "/products/page": "app/products/page.js",
+  "/register/page": "app/register/page.js",
+  "/returns/page": "app/returns/page.js"
 }

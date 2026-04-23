@@ -7,7 +7,7 @@ This document describes **the app as built** in this repository: a **Yoventa**-b
 - **Yoventa Limited** operates a **real** business focused on **sales of computers and accessories**. The **public website, About, and Contact** must read as a **production store**, not a tutorial or demo.
 - **Do not** use phrases such as “demo data”, “sample catalog”, “test store”, “DummyJSON”, or “placeholder data” in **any user-visible** UI, metadata, or marketing string. **DummyJSON** and similar names belong **only** in this developer doc and in `src/lib` code the customer never sees.
 - The storefront lists products in the **normal shopping flow**; the business process is: **after the customer has successfully paid**, orders are **sourced and fulfilled** through your real operations. Say that in About or policy copy as needed; do not imply the catalog is only for play.
-- When **adding new pages** (extra sections, new routes, A/B copy): **do not remove or replace** the existing **Contact** and **About** business details. **Keep** `src/lib/contact.ts` as the source of truth: **Yoventa Limited** (sales of computers and accessories), **5 Giwa Efungbotu Street, Ikorodu, Lagos, Nigeria**, phone **0909 636 1340**, **operations@yoventadigital.com**, **https://yoventadigital.com** — and grow the site by **new pages and links**, unless you are intentionally doing a full legal rebrand.
+- When **adding new pages** (extra sections, new routes, A/B copy): **do not remove or replace** the existing **Contact** and **About** business details. **Keep** `src/lib/contact.ts` as the source of truth: **Yoventa Limited** (sales of computers and accessories), **5 Giwa Efungbotu Street, Ikorodu, Lagos, Nigeria**, phone **0909 636 1340**, **operations@yoventadigital.com**, **https://yoventadigital.com**. Grow the site by **new pages and links**, unless you are intentionally doing a full legal rebrand.
 
 > **Not used in this app:** the original “TechVault + Best Buy API” spec. Catalog data here comes from **DummyJSON** (`https://dummyjson.com`). The folder path `app/api/bestbuy/` is a **legacy name**; handlers call DummyJSON, not Best Buy.
 
@@ -36,7 +36,7 @@ This document describes **the app as built** in this repository: a **Yoventa**-b
 
 - **Laptops** and **laptop accessories** only (see `categories.ts`); other product types are not listed in this store.
 - **USD** display via `Intl` / `formatUsd` in `src/lib/pricing.ts` - not repeated in marketing copy as “US dollars (USD)”.
-- **No em dashes (—)** in user-facing copy (policy of this project); use periods, commas, or **·** where needed.
+- **No em dashes** in user-facing copy (policy of this project); use periods, commas, or **·** where needed.
 - **Newsletter** exists as a **home page section** (`Newsletter` component) - not in the **footer** (footer has **Policies** column: privacy + returns).
 
 ---

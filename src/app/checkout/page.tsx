@@ -66,7 +66,7 @@ function CheckoutContent() {
             onPaid={() => {
               setPayOpen(false);
               clear();
-              toast.success('Order request sent — we will contact you shortly');
+              toast.success('Order request sent. We will contact you shortly');
               router.push('/dashboard');
             }}
           />

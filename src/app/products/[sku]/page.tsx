@@ -61,7 +61,7 @@ export default async function ProductDetailPage({ params }: Ctx) {
         <div>
           {off > 0 && (
             <p className="text-sm text-emerald-700">
-              {off}% off list — sale price
+              {off}% off list; sale price
             </p>
           )}
           <p className="text-2xl font-semibold text-slate-900">
@@ -77,7 +77,7 @@ export default async function ProductDetailPage({ params }: Ctx) {
           </p>
           <p className="mt-2 text-sm text-slate-600">
             {p.inStock
-              ? `In stock — ${p.stock} available`
+              ? `In stock · ${p.stock} available`
               : 'Currently out of stock'}
           </p>
           <div className="mt-6">

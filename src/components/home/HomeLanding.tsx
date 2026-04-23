@@ -162,7 +162,7 @@ export default async function HomeLanding() {
               Shop by category
             </h2>
             <p className="mt-4 text-lg text-slate-600">
-              Choose laptops or accessories — every listing includes photos,
+              Choose laptops or accessories. Every listing includes photos,
               specs, and up-to-date pricing.
             </p>
           </div>
@@ -227,7 +227,7 @@ export default async function HomeLanding() {
               },
               {
                 title: 'Laptops & accessories in one place',
-                body: 'From notebooks to chargers and protection — build your setup without hopping between sites.',
+                body: 'From notebooks to chargers and protection. Build your setup without hopping between sites.',
               },
               {
                 title: 'Local support',
@@ -311,7 +311,7 @@ export default async function HomeLanding() {
             Ready to order or need a quote?
           </h2>
           <p className="mt-4 text-lg text-slate-300">
-            Tell us your budget and use case — we will help you pick the right
+            Tell us your budget and use case, and we will help you pick the right
             laptop and accessories.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

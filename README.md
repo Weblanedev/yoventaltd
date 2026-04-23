@@ -1,4 +1,4 @@
-# Yoventa Limited — Next.js storefront
+# Yoventa Limited: Next.js storefront
 
 Single [Next.js](https://nextjs.org/) 15 app (App Router) with **Route Handlers** for session auth, catalog (DummyJSON), profile, and optional OpenAI chat. Styling: [Tailwind CSS](https://tailwindcss.com/) 4.
 
@@ -12,9 +12,9 @@ Behavior and product rules are described in [build.instruction.md](./build.instr
 
 Copy `.env.example` to `.env` for local development:
 
-- **`SESSION_SECRET`** — long random string used to sign the session cookie. **Required in production** (Netlify site environment variables).
-- **`OPENAI_API_KEY`** — optional; enables the product assistant. Set `OPENAI_MODEL` if you want a model other than `gpt-4o-mini`.
-- **`NETLIFY`** / **`NETLIFY_BLOBS_READ_WRITE_TOKEN`** — set automatically on Netlify when using Blobs; local dev uses `data/users.json`.
+- **`SESSION_SECRET`**: long random string used to sign the session cookie. **Required in production** (Netlify site environment variables).
+- **`OPENAI_API_KEY`**: optional; enables the product assistant. Set `OPENAI_MODEL` if you want a model other than `gpt-4o-mini`.
+- **`NETLIFY`** / **`NETLIFY_BLOBS_READ_WRITE_TOKEN`**: set automatically on Netlify when using Blobs; local dev uses `data/users.json`.
 
 ## Develop
 
@@ -41,6 +41,6 @@ npm start
 
 ## Project layout
 
-- `src/app/` — pages and `api/**/route.ts` handlers
-- `src/lib/` — session, catalog, storage, etc.
-- `data/users.json` — seed / local user store
+- `src/app/`: pages and `api/**/route.ts` handlers
+- `src/lib/`: session, catalog, storage, etc.
+- `data/users.json`: seed / local user store

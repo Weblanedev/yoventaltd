@@ -20,8 +20,8 @@ const jet = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: `${siteName} — ${siteTagline}`, template: `%s | ${siteName}` },
-  description: `${siteName} — ${company.businessLine}.`,
+  title: { default: `${siteName} · ${siteTagline}`, template: `%s | ${siteName}` },
+  description: `${siteName} · ${company.businessLine}.`,
 };
 
 export default function RootLayout({

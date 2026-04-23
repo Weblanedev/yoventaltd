@@ -15,7 +15,7 @@ export async function buildProductContextForAI(): Promise<string> {
     if (!items.length) continue;
     const lines = items.map(
       (p) =>
-        `- ${p.name} (${c.label}) — ${formatUsd(p.salePrice)} · sku ${p.sku}`,
+        `- ${p.name} (${c.label}) · ${formatUsd(p.salePrice)} · sku ${p.sku}`,
     );
     parts.push(`**${c.label}**\n${lines.join('\n')}`);
   }
