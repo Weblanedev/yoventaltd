@@ -1,8 +1,8 @@
 /** Public business and contact details for Yoventa Limited (single source of truth). */
 export const company = {
   legalName: 'Yoventa Limited',
-  /** Registered business focus: sales of computers and accessories */
-  businessLine: 'Sales of computers and accessories',
+  /** Registered business focus */
+  businessLine: 'Sales of computers and its accessories',
   addressLines: [
     '5 Giwa Efungbotu Street',
     'Ikorodu, Lagos',
@@ -10,8 +10,8 @@ export const company = {
   ] as const,
   /** Primary line (Nigeria) */
   phone: '0909 636 1340',
-  email: 'operations@yoventadigital.com',
-  website: 'https://yoventadigital.com',
+  email: 'operations@yoventaltd.com',
+  website: 'https://yoventaltd.com',
 } as const;
 
 export function formatAddress(): string {

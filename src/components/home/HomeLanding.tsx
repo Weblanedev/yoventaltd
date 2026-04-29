@@ -197,7 +197,7 @@ export default async function HomeLanding() {
                       {c.description}
                     </p>
                     <span className="mt-5 inline-flex w-fit items-center text-sm font-semibold text-emerald-300 group-hover:text-white">
-                      View range →
+                      {'View range ->'}
                     </span>
                   </div>
                 </Link>
@@ -268,7 +268,7 @@ export default async function HomeLanding() {
               href="/products"
               className="shrink-0 text-sm font-semibold text-emerald-700 hover:text-emerald-800"
             >
-              View all products →
+              {'View all products ->'}
             </Link>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

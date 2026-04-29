@@ -1,8 +1,8 @@
 {
   "version": 1,
   "functions": {
-    "/twitter-image": {},
     "/apple-icon": {},
-    "/opengraph-image": {}
+    "/opengraph-image": {},
+    "/twitter-image": {}
   }
 }

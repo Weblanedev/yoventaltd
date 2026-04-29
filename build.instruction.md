@@ -1,17 +1,16 @@
 # Yoventa: E-commerce - Build & handoff spec
 
-This document describes **the app as built** in this repository: a **Yoventa**-branded storefront (you can rebrand and swap product verticals by following the “Changing products / vertical” section). It is meant to be **shared with another project or team** to reproduce or extend the same architecture. **Current stack in repo:** **Next.js** (App Router) + React + Tailwind, single app; business details live in **`src/lib/contact.ts`**.
+This document describes **the app as built** in this repository: a **Yoventa**-branded storefront (you can rebrand and swap product verticals by following the "Changing products / vertical" section). It is meant to be **shared with another project or team** to reproduce or extend the same architecture. **Current stack in repo:** **Next.js** (App Router) + React + Tailwind, single app; business details live in **`src/lib/contact.ts`**.
 
 ### Customer-facing copy and positioning (read first)
 
-- **Yoventa Limited** operates a **real** business focused on **sales of computers and accessories**. The **public website, About, and Contact** must read as a **production store**, not a tutorial or demo.
-- **Do not** use phrases such as “demo data”, “sample catalog”, “test store”, “DummyJSON”, or “placeholder data” in **any user-visible** UI, metadata, or marketing string. **DummyJSON** and similar names belong **only** in this developer doc and in `src/lib` code the customer never sees.
+- **Yoventa Limited** operates a **real** business focused on **sales of computers and its accessories**. The **public website, About, and Contact** must read as a **production store**, not a tutorial or demo.
+- **Do not** use phrases such as "demo data", "sample catalog", "test store", "DummyJSON", or "placeholder data" in **any user-visible** UI, metadata, or marketing string. **DummyJSON** and similar names belong **only** in this developer doc and in `src/lib` code the customer never sees.
 - The storefront lists products in the **normal shopping flow**; the business process is: **after the customer has successfully paid**, orders are **sourced and fulfilled** through your real operations. Say that in About or policy copy as needed; do not imply the catalog is only for play.
-- When **adding new pages** (extra sections, new routes, A/B copy): **do not remove or replace** the existing **Contact** and **About** business details. **Keep** `src/lib/contact.ts` as the source of truth: **Yoventa Limited** (sales of computers and accessories), **5 Giwa Efungbotu Street, Ikorodu, Lagos, Nigeria**, phone **0909 636 1340**, **operations@yoventadigital.com**, **https://yoventadigital.com**. Grow the site by **new pages and links**, unless you are intentionally doing a full legal rebrand.
+- When **adding new pages** (extra sections, new routes, A/B copy): **do not remove or replace** the existing **Contact** and **About** business details. **Keep** `src/lib/contact.ts` as the source of truth: **Yoventa Limited** (sales of computers and its accessories), **5 Giwa Efungbotu Street, Ikorodu, Lagos, Nigeria**, phone **0909 636 1340**, **operations@yoventaltd.com**, **https://yoventaltd.com**. Grow the site by **new pages and links**, unless you are intentionally doing a full legal rebrand.
 
-> **Not used in this app:** the original “TechVault + Best Buy API” spec. Catalog data here comes from **DummyJSON** (`https://dummyjson.com`). The folder path `app/api/bestbuy/` is a **legacy name**; handlers call DummyJSON, not Best Buy.
+> **Not used in this app:** the original "TechVault + Best Buy API" spec. Catalog data here comes from **DummyJSON** (`https://dummyjson.com`). The folder path `app/api/bestbuy/` is a **legacy name**; handlers call DummyJSON, not Best Buy.
 
----
 
 ## 1. One-page summary
 
@@ -24,22 +23,20 @@ This document describes **the app as built** in this repository: a **Yoventa**-b
 | **Cart** | **React Context** + **localStorage** persistence |
 | **Checkout** | **Sign-in required** (server + client gate). No guest checkout. Profile PATCH, then **simulated payment** modal (always fails with friendly message, cart kept) |
 | **Partner** | **Sign-in required** (server layout redirect). Shown in nav/footer only when logged in |
-| **“Live chat”** (UI label; `ChatUsButton` in code) | **Guests:** toast + redirect to login. **Signed-in:** opens **AI product assistant** (OpenAI) + link to **Contact**; floating panel **ChatWidgetProvider** |
+| **"Live chat"** (UI label; `ChatUsButton` in code) | **Guests:** toast + redirect to login. **Signed-in:** opens **AI product assistant** (OpenAI) + link to **Contact**; floating panel **ChatWidgetProvider** |
 | **AI assistant** | `POST /api/ai/chat` - OpenAI chat completions, catalog context from DummyJSON, **auth required** |
 | **Policies** | Markdown in **`src/content/legal/`**, rendered via `MarkdownArticle` / legal pages |
 
 **Node:** `>=20.9.0` (see `package.json` `engines`).
 
----
 
 ## 2. Product philosophy (this build)
 
 - **Laptops** and **laptop accessories** only (see `categories.ts`); other product types are not listed in this store.
-- **USD** display via `Intl` / `formatUsd` in `src/lib/pricing.ts` - not repeated in marketing copy as “US dollars (USD)”.
-- **No em dashes** in user-facing copy (policy of this project); use periods, commas, or **·** where needed.
+- **USD** display via `Intl` / `formatUsd` in `src/lib/pricing.ts` - not repeated in marketing copy as "US dollars (USD)".
+- **No em or en dashes** in user-facing copy (policy of this project); use periods, commas, an ASCII hyphen, or **·** where needed.
 - **Newsletter** exists as a **home page section** (`Newsletter` component) - not in the **footer** (footer has **Policies** column: privacy + returns).
 
----
 
 ## 3. Environment variables
 
@@ -49,8 +46,8 @@ Copy **`.env.local.example`** to **`.env.local`** and set:
 |----------|---------|
 | `SESSION_SECRET` | Long random string for HMAC session tokens (required in production) |
 | `NEXT_PUBLIC_SITE_NAME` (or `VITE_SITE_NAME` in this repo) | Default site name, e.g. `Yoventa` (`frontend/src/lib/site.ts`) |
-| `NEXT_PUBLIC_SITE_DOMAIN` / `VITE_…` / `SITE_DOMAIN` | Domain string, e.g. `yoventadigital.com` |
-| `NEXT_PUBLIC_SITE_URL` | In this repo use `VITE_` and contact `siteUrl` in `contact.ts` (e.g. `https://yoventadigital.com`) |
+| `NEXT_PUBLIC_SITE_DOMAIN` / `VITE_...` / `SITE_DOMAIN` | Domain string, e.g. `yoventaltd.com` |
+| `NEXT_PUBLIC_SITE_URL` | In this repo use `VITE_` and contact `siteUrl` in `contact.ts` (e.g. `https://yoventaltd.com`) |
 | `NEXT_PUBLIC_LEGAL_NAME` | Optional, default `Yoventa Limited` (legal name is in `contact` modules) |
 | `NEXT_PUBLIC_TAGLINE` | Optional, e.g. general merchandise and computers line |
 | `NEXT_PUBLIC_CURRENCY` | Documented; pricing code uses `formatUsd` / USD |
@@ -59,7 +56,6 @@ Copy **`.env.local.example`** to **`.env.local`** and set:
 
 **No API key** is required for DummyJSON (public).
 
----
 
 ## 4. Install & scripts
 
@@ -73,7 +69,6 @@ npm run start   # next start
 npm run lint    # tsc --noEmit (TypeScript as lint)
 ```
 
----
 
 ## 5. Dependencies (runtime, notable)
 
@@ -84,7 +79,6 @@ npm run lint    # tsc --noEmit (TypeScript as lint)
 - **react-hot-toast** - toasts
 - **react-markdown** - legal pages + AI assistant replies in `AIChatPanel`
 
----
 
 ## 6. High-level folder structure
 
@@ -102,15 +96,15 @@ src/
 │   │   ├── layout.tsx         # Server: must be logged in (redirect to /login?next=/checkout)
 │   │   └── page.tsx            # Client: shipping form, profile PATCH, PaymentModal
 │   ├── login/, register/
-│   ├── dashboard/             # Account + “Live chat” card (contact + “Open live chat”)
-│   ├── partner/               # layout.tsx: auth gate → /login?next=/partner
+│   ├── dashboard/             # Account + "Live chat" card (contact + "Open live chat")
+│   ├── partner/               # layout.tsx: auth gate -> /login?next=/partner
 │   │   └── PartnerForm.tsx
 │   ├── about/, contact/
 │   ├── privacy/, returns/     # Legal markdown
 │   ├── not-found.tsx
 │   └── api/
 │       ├── bestbuy/
-│       │   ├── products/route.ts    # GET → fetchDummyJsonProducts
+│       │   ├── products/route.ts    # GET -> fetchDummyJsonProducts
 │       │   └── product/[sku]/route.ts
 │       ├── auth/ login, register, logout
 │       ├── user/ me, profile
@@ -133,7 +127,6 @@ src/
 
 `next.config.mjs` - **`images.remotePatterns`** for DummyJSON CDNs and `placehold.co`.
 
----
 
 ## 7. Catalog: DummyJSON (not Best Buy)
 
@@ -144,9 +137,8 @@ src/
   - **`GET /api/bestbuy/products`** - query: `page`, `pageSize`, `q`, `category` (must match a slug in `src/lib/categories.ts`).
   - **`GET /api/bestbuy/product/[sku]`** - single product by id.
 
-**Why “bestbuy” in the path?** Historical; implementation is 100% DummyJSON. You may rename the route folder to e.g. `api/store/products` in a fork (update fetches in `ProductsClient` and any server fetches).
+**Why "bestbuy" in the path?** Historical; implementation is 100% DummyJSON. You may rename the route folder to e.g. `api/store/products` in a fork (update fetches in `ProductsClient` and any server fetches).
 
----
 
 ## 8. Categories - how they work and how to change the product vertical
 
@@ -162,13 +154,12 @@ src/
 1. **Pick** DummyJSON categories that match your vertical (e.g. `skincare`, `home-decoration`, `groceries`).
 2. **Edit** `PRODUCT_CATEGORIES` in `categories.ts` - set `slug`/`label`/`description` for your UX and set **`dummyjsonCategorySlug`** to the DummyJSON category name.
 3. **Update** `ProductCategorySlug` TypeScript union to match your new slugs.
-4. **Search and replace** across the repo for old slugs in links (e.g. `products/page.tsx` `SLUGS`, `page.tsx` home “Shop by category” and hero links, `src/lib/ai/build-product-context.ts` intro text, marketing copy on `page.tsx` / `about` / `layout` metadata).
+4. **Search and replace** across the repo for old slugs in links (e.g. `products/page.tsx` `SLUGS`, `page.tsx` home "Shop by category" and hero links, `src/lib/ai/build-product-context.ts` intro text, marketing copy on `page.tsx` / `about` / `layout` metadata).
 5. **Home / featured** fetches in `app/page.tsx` use `getCategoryBySlug('laptops-computers')` and `accessories` - align those with your new slugs.
-6. **AI** system prompt in `app/api/ai/chat/route.ts` and **text** in `lib/ai/build-product-context.ts` still mention “laptops/tablets” until you reword for your store.
+6. **AI** system prompt in `app/api/ai/chat/route.ts` and **text** in `lib/ai/build-product-context.ts` still mention "laptops/tablets" until you reword for your store.
 
-**`src/lib/dummyjson.ts`** also filters the **all-products merge** to only `PRODUCT_CATEGORIES`’ `dummyjsonCategorySlug` values when no search query is applied - so your category list is the allowlist for the default catalog.
+**`src/lib/dummyjson.ts`** also filters the **all-products merge** to only `PRODUCT_CATEGORIES`' `dummyjsonCategorySlug` values when no search query is applied - so your category list is the allowlist for the default catalog.
 
----
 
 ## 9. Auth & sessions
 
@@ -182,30 +173,27 @@ src/
 
 **Profile** - `PATCH /api/user/profile` (name + profile: phone, address fields); used at checkout to save shipping.
 
----
 
 ## 10. Route protection (login required)
 
 | Feature | Mechanism |
 |---------|-----------|
 | **Checkout** | `app/checkout/layout.tsx` - `getServerUser()`; if missing, `redirect('/login?next=/checkout')`. Client page also syncs. |
-| **Cart → Checkout** | `CartView` - if not `user`, button is **“Log in to checkout”** → `/login?next=/checkout`. |
+| **Cart -> Checkout** | `CartView` - if not `user`, button is **"Log in to checkout"** -> `/login?next=/checkout`. |
 | **Partner** | `app/partner/layout.tsx` - redirect to login with `next=/partner`. Navbar/footer **Partner** only if `user`. |
 | **AI chat** | `POST /api/ai/chat` - 401 if no valid session. Floating `ChatUsButton` for guests: toast + login with `next` = current path. |
 | **Dashboard** | Client redirect to login if not authenticated. |
 
 **Login** - `LoginForm` respects `?next=` for return URL after sign-in (must be path starting with `/`).
 
----
 
 ## 11. Cart & pricing
 
 - **`CartContext`** - lines with sku, name, price snapshot, image, quantity; `localStorage` key for persistence.
 - **Unit price** - `getUnitPrice` + **`formatUsd`** in `src/lib/pricing.ts` (USD `Intl` formatting).
 - **Shipping** - flat constant in `CartView` / checkout (e.g. 9.99) - adjust in code as needed.
-- **Payment** - `components/PaymentModal.tsx`: short fake “loading” then error toast; **no real charge**; in error state, **Back to products** calls `router.push('/products')` and closes the modal. **Cancel** closes without navigation.
+- **Payment** - `components/PaymentModal.tsx`: short fake "loading" then error toast; **no real charge**; in error state, **Back to products** calls `router.push('/products')` and closes the modal. **Cancel** closes without navigation.
 
----
 
 ## 12. Key pages (behavior)
 
@@ -213,14 +201,13 @@ src/
 - **/products** - `ProductsClient` fetches `/api/bestbuy/products` with debounced search and category chips.
 - **/products/[sku]** - Server component + `AddToCartButton`, `ProductCard` patterns.
 - **/cart** - `CartView`.
-- **/checkout** - Logged in only; form → `PATCH` profile → `PaymentModal`.
+- **/checkout** - Logged in only; form -> `PATCH` profile -> `PaymentModal`.
 - **/contact** - Contact form, optional fields, toast.
 - **/dashboard** - Profile summary, shopping links, **Live chat** card (call, contact, open AI assistant).
-- **/partner** - “Partner with us” form (interest capture + toast) - **auth only** at layout level.
+- **/partner** - "Partner with us" form (interest capture + toast) - **auth only** at layout level.
 - **/privacy**, **/returns** - `LegalPageShell` + markdown from `content/legal/`.
 - **/login**, **/register** - `LoginForm`, `RegisterForm` with yup.
 
----
 
 ## 13. UI / design
 
@@ -229,22 +216,19 @@ src/
 - **Floating UI:** `ChatUsButton` (z-index ~60), `AIChatPanel` (~70) when open, above main content.
 - **Tailwind** - `tailwind.config.ts`: brand green palette, cyan, `font-display` / `font-sans` / `font-mono` mapped to CSS variables.
 
----
 
 ## 14. AI product assistant
 
 - **Files:** `src/components/AIChatPanel.tsx`, `src/context/ChatWidgetContext.tsx`, `src/app/api/ai/chat/route.ts`, `src/lib/ai/build-product-context.ts`.
-- **Flow:** Logged-in user toggles **Live chat** → panel opens. Messages posted to **OpenAI** with a **system prompt** + **catalog context** from `buildProductContextForAI()` (representative items per category; **not** labeled as “demo” to end users; internal integration detail only in code/docs).
+- **Flow:** Logged-in user toggles **Live chat** -> panel opens. Messages posted to **OpenAI** with a **system prompt** + **catalog context** from `buildProductContextForAI()` (representative items per category; **not** labeled as "demo" to end users; internal integration detail only in code/docs).
 - **Requires** `OPENAI_API_KEY` (503 with JSON error if missing).
 - Assistant messages rendered with **react-markdown**; user can link to **/contact** from panel header.
 
----
 
 ## 15. Contact & brand constants
 
-**`frontend/src/lib/contact.ts` / `backend/src/lib/contact-info.ts`** (keep identical): legal name, address, phone, `operations@yoventadigital.com`, site URL. Update for your deployment and keep legal markdown in sync if needed.
+**`frontend/src/lib/contact.ts` / `backend/src/lib/contact-info.ts`** (keep identical): legal name, address, phone, `operations@yoventaltd.com`, site URL. Update for your deployment and keep legal markdown in sync if needed.
 
----
 
 ## 16. Legal content
 
@@ -253,7 +237,6 @@ src/
 
 Routes **/privacy** and **/returns** load these. Edit markdown for the new brand/store.
 
----
 
 ## 17. `next.config.mjs` (images)
 
@@ -263,7 +246,6 @@ Allow remote images for:
 
 Add hosts here if you switch CDN or add more image domains.
 
----
 
 ## 18. Rebranding / fork checklist (quick)
 
@@ -272,14 +254,13 @@ Add hosts here if you switch CDN or add more image domains.
 - [ ] `categories.ts` + home/products copy + `build-product-context` + AI route intro text
 - [ ] `content/legal/*.md` and any footer/header strings
 - [ ] `data/users.json` (seed or empty for new env)
-- [ ] Rename `api/bestbuy` → clearer name and update fetches
+- [ ] Rename `api/bestbuy` -> clearer name and update fetches
 - [ ] `SESSION_SECRET` and `OPENAI_API_KEY` in production
 
----
 
 ## 19. Known limitations / intent (developer-facing)
 
-- **Payment modal** in this repo is a **stand-in** until a real gateway (e.g. Paystack, bank transfer confirmation) is wired; the **storefront is a real business site** in copy and user experience, not a “demo app” label.
+- **Payment modal** in this repo is a **stand-in** until a real gateway (e.g. Paystack, bank transfer confirmation) is wired; the **storefront is a real business site** in copy and user experience, not a "demo app" label.
 - **Single-user JSON file** for auth - not suitable for high concurrency; replace with a DB in production if needed.
 - **Catalog source** in code may use a **public product feed** for development; that is an **implementation detail** for engineers. In customer-facing text, present the **catalog and fulfillment** as the real business process (payment, then sourcing/fulfillment).
 - **Route name `bestbuy`** - historical folder name; safe to rename in a fork; keep customer copy free of that name.
@@ -288,7 +269,6 @@ Add hosts here if you switch CDN or add more image domains.
 
 This file should be enough to **rebuild the same architecture** in a clean repo. For a different product vertical, swap category mapping and keep **public copy** professional and non-experimental.
 
----
 
 ## 20. Portable blueprint: what any e-commerce web app should cover
 
@@ -309,24 +289,23 @@ Use this as a **checklist for other projects** (any stack), not only this repo. 
 
 **Stack-agnostic idea:** the **browser** is only a client; **secrets and business rules** stay on a server (here: Next **Route Handlers** and server runtimes), same pattern if you use Laravel, Rails, or a separate BFF.
 
----
 
 ## 21. Mobile responsiveness (reuse as project rules)
 
-**What “mobile” means here (important):** **responsive website in a mobile web browser** - Safari on iPhone, Chrome on Android, etc. The user opens your **normal URL**; CSS/HTML/JS adapt the layout (breakpoints, touch targets). This is **not** a separate **native** iOS or Android app built with Swift, Kotlin, or React Native, unless you explicitly add one later. The testing and layout guidance below is for **mobile web**, not the app stores.
+**What "mobile" means here (important):** **responsive website in a mobile web browser** - Safari on iPhone, Chrome on Android, etc. The user opens your **normal URL**; CSS/HTML/JS adapt the layout (breakpoints, touch targets). This is **not** a separate **native** iOS or Android app built with Swift, Kotlin, or React Native, unless you explicitly add one later. The testing and layout guidance below is for **mobile web**, not the app stores.
 
 **Goal:** the store must be usable on **phones and tablets in the browser**, not only on desktop, without installing an app.
 
 **How this app does it (Tailwind):**
 
-- **Breakpoints** use Tailwind’s defaults: `sm:`, `md:`, `lg:` (e.g. `md:flex`, `sm:grid-cols-2`, `lg:grid-cols-4`, `md:hidden` for the hamburger area on the `Navbar`, `px-4 sm:px-6` for horizontal padding on the main column).
+- **Breakpoints** use Tailwind's defaults: `sm:`, `md:`, `lg:` (e.g. `md:flex`, `sm:grid-cols-2`, `lg:grid-cols-4`, `md:hidden` for the hamburger area on the `Navbar`, `px-4 sm:px-6` for horizontal padding on the main column).
 - **Layout:** single column on small screens, multi-column and side-by-side only from `sm` / `md` / `lg` up (home sections, product grids, cart + summary, checkout form + order summary).
 - **Navigation:** main nav links are **hidden** on small viewports and exposed via a **menu button**; account actions adapt (`Navbar`).
 - **Touch targets:** buttons and key links are padded (not tiny 1px text links only); the floating **Live chat** control uses a comfortable tap size and sits **inset from edges** so it is not under notches (see `max-w` / `bottom-5` patterns).
 - **Media:** `next/image` with `sizes` on cards where it matters; `remotePatterns` in `next.config.mjs` for your CDN.
 - **Overflow:** long product titles use `line-clamp` or truncation where list rows would break layout.
 
-**Reusable instruction block you can paste into another app’s spec:**
+**Reusable instruction block you can paste into another app's spec:**
 
 1. **Viewport:** set `<meta name="viewport" content="width=device-width, initial-scale=1">` (Next.js `metadata` / root `layout` handles this; do not let users zoom into a broken 980px fixed layout on mobile).
 2. **Test real devices or browser dev tools** at 375px, 390px, 768px width at minimum before launch.
@@ -335,9 +314,8 @@ Use this as a **checklist for other projects** (any stack), not only this repo. 
 5. **Tables:** if you add order tables later, use horizontal scroll or card layout on small screens, not a wide unscrollable table.
 6. **Performance on mobile:** lazy-load below-the-fold images, avoid huge hero assets, keep JS bundle in check; Next helps with code splitting, but **large carousels** and **AI panels** should still be measured.
 
-**Optional later:** a **PWA** (manifest + service worker) is still a **web** experience (often “Add to home screen” that opens in a webview); it is not required for “mobile responsive” in the sense above.
+**Optional later:** a **PWA** (manifest + service worker) is still a **web** experience (often "Add to home screen" that opens in a webview); it is not required for "mobile responsive" in the sense above.
 
----
 
 ## 22. SEO, accessibility, and quality bar (portable add-ons)
 
@@ -349,11 +327,10 @@ Use this as a **checklist for other projects** (any stack), not only this repo. 
 | **Analytics** | Optional privacy-respecting analytics after you have a cookie/notice story aligned with the privacy page. |
 | **Testing** | e2e on cart + login + checkout on a CI agent; or manual smoke on mobile and desktop before releases. |
 
----
 
-## 23. How to use this file in “any other app”
+## 23. How to use this file in "any other app"
 
 - **Sections 1-19** - implementation details **specific to this Yoventa / DummyJSON** codebase (stack may be updated; **business and catalog rules** stay the same).  
 - **Sections 20-22** - **portable** - copy them into a new `BUILD.md` or product spec so every new e-commerce build gets the same baseline (catalog, trust, security, **mobile web**, SEO/a11y).  
-- For a **non-Next** project, still apply **§20, §21, §22**; replace “Route Handlers” with your own API layer.  
-- **“Mobile” throughout §20-22** = **phone/tablet web browsers** on your deployed site, not a native app from the app stores. If you later build **iOS/Android native** clients, use a different spec; they can still share the **same backend** APIs as the web app.
+- For a **non-Next** project, still apply **sections 20, 21, and 22**; replace "Route Handlers" with your own API layer.  
+- **"Mobile" throughout sections 20-22** = **phone/tablet web browsers** on your deployed site, not a native app from the app stores. If you later build **iOS/Android native** clients, use a different spec; they can still share the **same backend** APIs as the web app.

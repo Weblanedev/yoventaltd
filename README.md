@@ -36,7 +36,7 @@ npm start
 
 1. Connect the repo; build command `npm run build` (see [netlify.toml](./netlify.toml)).
 2. Install the official Next runtime via `@netlify/plugin-nextjs` (already in devDependencies).
-3. In **Site settings → Environment variables**, set at least `SESSION_SECRET`. Add `OPENAI_API_KEY` if you use chat.
+3. In **Site settings**, open **Environment variables**, set at least `SESSION_SECRET`. Add `OPENAI_API_KEY` if you use chat.
 4. User accounts on Netlify use **Netlify Blobs** when `NETLIFY=true` (or when a blobs token is present); otherwise the app reads/writes `data/users.json` (suitable for local dev). Enable [Netlify Blobs](https://docs.netlify.com/blobs/overview/) on the site if you rely on persisted registration data in production.
 
 ## Project layout

@@ -81,7 +81,7 @@ export default function OpenGraphImage() {
             fontFamily: 'ui-sans-serif, system-ui, sans-serif',
           }}
         >
-          yoventadigital.com
+          {new URL(company.website).hostname}
         </div>
       </div>
     ),

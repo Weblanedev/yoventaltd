@@ -125,7 +125,7 @@ export function AffiliateProgram() {
               className="mt-1.5 w-full min-h-[120px] rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 shadow-sm"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="E.g. Instagram tech reviews, student newsletter, IT consultancy clients…"
+              placeholder="E.g. Instagram tech reviews, student newsletter, IT consultancy clients..."
               required
             />
           </label>
@@ -136,7 +136,7 @@ export function AffiliateProgram() {
               type="text"
               value={channels}
               onChange={(e) => setChannels(e.target.value)}
-              placeholder="https://… or @handle on X / Instagram / TikTok"
+              placeholder="https://... or @handle on X / Instagram / TikTok"
             />
           </label>
           <p className="text-xs text-slate-500">

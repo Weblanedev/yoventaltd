@@ -129,7 +129,7 @@ export function AIChatPanel() {
                   void send();
                 }
               }}
-              placeholder="Type a message…"
+              placeholder="Type a message..."
               disabled={sending}
             />
             <button
